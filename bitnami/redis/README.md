@@ -129,6 +129,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `master.command`                                     | Override default container command (useful when using custom images)                                  | `[]`                     |
 | `master.args`                                        | Override default container args (useful when using custom images)                                     | `[]`                     |
 | `master.preExecCmds`                                 | Additional commands to run prior to starting Redis&reg; master                                        | `[]`                     |
+| `master.announceContainerIP`                         | uses the status.podIP field to announce the replication IP                                            | `false`                  |
 | `master.extraFlags`                                  | Array with additional command line flags for Redis&reg; master                                        | `[]`                     |
 | `master.extraEnvVars`                                | Array with extra environment variables to add to Redis&reg; master nodes                              | `[]`                     |
 | `master.extraEnvVarsCM`                              | Name of existing ConfigMap containing extra env vars for Redis&reg; master nodes                      | `""`                     |
@@ -228,6 +229,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | `replica.command`                                     | Override default container command (useful when using custom images)                                    | `[]`                     |
 | `replica.args`                                        | Override default container args (useful when using custom images)                                       | `[]`                     |
 | `replica.preExecCmds`                                 | Additional commands to run prior to starting Redis&reg; replicas                                        | `[]`                     |
+| `replica.announceContainerIP`                         | uses the status.podIP field to announce the replication IP                                              | `false`                  |
 | `replica.extraFlags`                                  | Array with additional command line flags for Redis&reg; replicas                                        | `[]`                     |
 | `replica.extraEnvVars`                                | Array with extra environment variables to add to Redis&reg; replicas nodes                              | `[]`                     |
 | `replica.extraEnvVarsCM`                              | Name of existing ConfigMap containing extra env vars for Redis&reg; replicas nodes                      | `""`                     |

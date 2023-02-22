@@ -188,7 +188,11 @@ data:
 
     echo "" >> /opt/bitnami/redis/etc/replica.conf
     echo "replica-announce-port $REDISPORT" >> /opt/bitnami/redis/etc/replica.conf
+    {{- if .Values.master.announceContainerIP }}
+    echo "replica-announce-ip $CONTAINER_REPLICATION_IP" >> /opt/bitnami/redis/etc/replica.conf
+    {{- else }}
     echo "replica-announce-ip $(get_full_hostname "$HOSTNAME")" >> /opt/bitnami/redis/etc/replica.conf
+    {{- end }}
 
     {{- if .Values.tls.enabled }}
     ARGS=("--port" "0")
@@ -676,7 +680,11 @@ data:
 
     echo "" >> /opt/bitnami/redis/etc/replica.conf
     echo "replica-announce-port $REDISPORT" >> /opt/bitnami/redis/etc/replica.conf
+    {{- if .Values.replica.announceContainerIP }}
+    echo "replica-announce-ip $CONTAINER_REPLICATION_IP" >> /opt/bitnami/redis/etc/replica.conf
+    {{- else }}
     echo "replica-announce-ip $(get_full_hostname "$HOSTNAME")" >> /opt/bitnami/redis/etc/replica.conf
+    {{- end }}
 
     {{- if .Values.tls.enabled }}
     ARGS=("--port" "0")

@@ -405,8 +405,13 @@ data:
     echo "sentinel announce-port $SERVPORT" >> /opt/bitnami/redis-sentinel/etc/sentinel.conf
     {{- end }}
     {{- if not (contains "sentinel announce-ip" .Values.sentinel.configuration) }}
+        {{- if .Values.sentinel.announceContainerIP }}
+    echo "sentinel announce-ip $CONTAINER_REPLICATION_IP" >> /opt/bitnami/redis-sentinel/etc/sentinel.conf
+        {{- else }}
     echo "sentinel announce-ip $(get_full_hostname "$HOSTNAME")" >> /opt/bitnami/redis-sentinel/etc/sentinel.conf
+        {{- end }}
     {{- end }}
+
 
     {{- if .Values.tls.enabled }}
     ARGS=("--port" "0")
